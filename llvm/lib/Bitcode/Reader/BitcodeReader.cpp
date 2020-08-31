@@ -1299,6 +1299,9 @@ static uint64_t getRawAttributeMask(Attribute::AttrKind Val) {
   case Attribute::SanitizeMemTag:
     llvm_unreachable("sanitize_memtag attribute not supported in raw format");
     break;
+  case Attribute::NoLoopIdiom:
+    llvm_unreachable("noloopidiom attribute not supported in raw format");
+    break;
   }
   llvm_unreachable("Unsupported attribute type");
 }
@@ -1313,7 +1316,8 @@ static void addRawAttributeValue(AttrBuilder &B, uint64_t Val) {
         I == Attribute::DereferenceableOrNull ||
         I == Attribute::ArgMemOnly ||
         I == Attribute::AllocSize ||
-        I == Attribute::NoSync)
+        I == Attribute::NoSync ||
+        I == Attribute::NoLoopIdiom)
       continue;
     if (uint64_t A = (Val & getRawAttributeMask(I))) {
       if (I == Attribute::Alignment)
@@ -1458,6 +1462,8 @@ static Attribute::AttrKind getAttrFromCode(uint64_t Code) {
     return Attribute::NoImplicitFloat;
   case bitc::ATTR_KIND_NO_INLINE:
     return Attribute::NoInline;
+  case bitc::ATTR_KIND_NO_LOOP_IDIOM:
+    return Attribute::NoLoopIdiom;
   case bitc::ATTR_KIND_NO_RECURSE:
     return Attribute::NoRecurse;
   case bitc::ATTR_KIND_NON_LAZY_BIND:

@@ -1590,6 +1590,13 @@ void CodeGenModule::SetLLVMFunctionAttributesForDefinition(const Decl *D,
 
     if (D->hasAttr<MinSizeAttr>())
       B.addAttribute(llvm::Attribute::MinSize);
+
+    /**
+     * ! SSP Hack.
+     * Populate NoLoopIdiom attribute.
+     */
+    if (D->hasAttr<NoLoopIdiomAttr>())
+      B.addAttribute(llvm::Attribute::NoLoopIdiom);
   }
 
   F->addAttributes(llvm::AttributeList::FunctionIndex, B);

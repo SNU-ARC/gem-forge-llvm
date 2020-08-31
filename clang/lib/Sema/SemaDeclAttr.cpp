@@ -6921,6 +6921,9 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
   case ParsedAttr::AT_NoInline:
     handleSimpleAttribute<NoInlineAttr>(S, D, AL);
     break;
+  case ParsedAttr::AT_NoLoopIdiom:
+    handleSimpleAttribute<NoLoopIdiomAttr>(S, D, AL);
+    break;
   case ParsedAttr::AT_NoInstrumentFunction: // Interacts with -pg.
     handleSimpleAttribute<NoInstrumentFunctionAttr>(S, D, AL);
     break;

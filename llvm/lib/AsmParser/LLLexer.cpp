@@ -654,6 +654,7 @@ lltok::Kind LLLexer::LexIdentifier() {
   KEYWORD(nofree);
   KEYWORD(noimplicitfloat);
   KEYWORD(noinline);
+  KEYWORD(noloopidiom);
   KEYWORD(norecurse);
   KEYWORD(nonlazybind);
   KEYWORD(nonnull);
