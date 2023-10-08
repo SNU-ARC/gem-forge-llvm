@@ -3105,6 +3105,10 @@ include "X86InstrVecCompiler.td"
 // SSP Instructions and Pat Patterns
 include "X86InstrSSP.td"
 
+// PSP Instructions and Pat Patterns
+// Editor: K16DIABLO (Sungjun Jung)
+include "X86InstrPSP.td"
+
 //===----------------------------------------------------------------------===//
 // Assembler Mnemonic Aliases
 //===----------------------------------------------------------------------===//
