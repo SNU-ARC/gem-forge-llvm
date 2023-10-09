@@ -1608,34 +1608,35 @@ def int_ssp_stream_step   : Intrinsic<[],
 
 //===------------ Intrinsics for programmable stream prefetcher ------------===//
 // Editor: K16DIABLO (Sungjun Jung)
+// TODO: All IR should be defined as R-format
 
 // Configure stream (base address of index)
 def int_stream_cfg_idx_base : Intrinsic<[],
-                                        [llvm_any_ty, llvm_any_ty],
+                                        [llvm_i64_ty, llvm_any_ty],
                                         [IntrWillReturn]>;
 // Configure stream (access granularity of index)
 def int_stream_cfg_idx_gran : Intrinsic<[],
-                                        [llvm_any_ty, llvm_any_ty],
+                                        [llvm_i64_ty, llvm_any_ty],
                                         [IntrWillReturn]>;
 // Configure stream (base address of value)
 def int_stream_cfg_val_base : Intrinsic<[],
-                                        [llvm_any_ty, llvm_any_ty],
+                                        [llvm_i64_ty, llvm_any_ty],
                                         [IntrWillReturn]>;
 // Configure stream (access granularity of value)
 def int_stream_cfg_val_gran       : Intrinsic<[],
-                                        [llvm_any_ty, llvm_any_ty],
+                                        [llvm_i64_ty, llvm_any_ty],
                                         [IntrWillReturn]>;
 // Input stream (offset_begin)
 def int_stream_input_offset_begin : Intrinsic<[],
-                                      [llvm_any_ty, llvm_any_ty],
+                                      [llvm_i64_ty, llvm_any_ty],
                                       [IntrWillReturn]>;
 // Input stream (offset_end)
 def int_stream_input_offset_end   : Intrinsic<[],
-                                      [llvm_any_ty, llvm_any_ty],
+                                      [llvm_i64_ty, llvm_any_ty],
                                       [IntrWillReturn]>;
 // Termintate stream
 def int_stream_terminate          : Intrinsic<[],
-                                      [llvm_any_ty],
+                                      [llvm_i64_ty],
                                       [IntrWillReturn]>;
 
 //===----------------------------------------------------------------------===//

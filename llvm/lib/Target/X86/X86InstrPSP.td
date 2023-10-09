@@ -1,6 +1,7 @@
 /**
  * Programmable Streaming Prefetch (PSP) instructions' opcode are 0x0F 0x38 0x6X, with no prefix.
  * Editor: K16DIABLO (Sungjun Jung)
+ * TODO: All instructions should be defined as R-format
  */
 
 class IPSP<bits<8> o, Format f, ImmType i, dag outs, dag ins, 
@@ -13,62 +14,62 @@ class IPSP<bits<8> o, Format f, ImmType i, dag outs, dag ins,
 def STREAM_CFG_IDX_BASE
   : IPSP<0x60, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$base),
+         (ins GR64:$base, i64i8imm:$stream),
          "stream.cfg.idx.base\t{$stream, $base|$base, $stream}",
-         [(int_stream_cfg_idx_base GR64:$stream, GR64:$base)]>;
+         [(int_stream_cfg_idx_base i64immSExt8:$stream, GR64:$base)]>;
 
 def STREAM_CFG_IDX_GRAN
   : IPSP<0x61, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$granularity),
+         (ins GR64:$granularity, i64i8imm:$stream),
          "stream.cfg.idx.gran\t{$stream, $granularity|$granularity, $stream}",
-         [(int_stream_cfg_idx_gran GR64:$stream, GR64:$granularity)]>;
+         [(int_stream_cfg_idx_gran i64immSExt8:$stream, GR64:$granularity)]>;
 
 def STREAM_CFG_VAL_BASE
   : IPSP<0x62, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$base),
+         (ins GR64:$base, i64i8imm:$stream),
          "stream.cfg.val.base\t{$stream, $base|$base, $stream}",
-         [(int_stream_cfg_val_base GR64:$stream, GR64:$base)]>;
+         [(int_stream_cfg_val_base i64immSExt8:$stream, GR64:$base)]>;
 
 def STREAM_CFG_VAL_GRAN
   : IPSP<0x63, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$granularity),
+         (ins GR64:$granularity, i64i8imm:$stream),
          "stream.cfg.val.gran\t{$stream, $granularity|$granularity, $stream}",
-         [(int_stream_cfg_val_gran GR64:$stream, GR64:$granularity)]>;
+         [(int_stream_cfg_val_gran i64immSExt8:$stream, GR64:$granularity)]>;
 
 def STREAM_INPUT_OFFSET_BEGIN
   : IPSP<0x64, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$value),
+         (ins GR64:$value, i64i8imm:$stream),
          "stream.input.offset.begin\t{$stream, $value|$value, $stream}",
-         [(int_stream_input_offset_begin GR64:$stream, GR64:$value)]>;
+         [(int_stream_input_offset_begin i64immSExt8:$stream, GR64:$value)]>;
 
 def STREAM_INPUT_OFFSET_END
   : IPSP<0x65, 
          MRMXr, 
-         NoImm,
+         Imm8,
          (outs),
-         (ins GR64:$stream, GR64:$value),
+         (ins GR64:$value, i64i8imm:$stream),
          "stream.input.offset.end\t{$stream, $value|$value, $stream}",
-         [(int_stream_input_offset_end GR64:$stream, GR64:$value)]>;
+         [(int_stream_input_offset_end i64immSExt8:$stream, GR64:$value)]>;
 
 def STREAM_TERMINATE
   : IPSP<0x66, 
-         MRMXr, 
-         NoImm,
+         RawFrm, 
+         Imm8,
          (outs),
-         (ins GR64:$stream),
+         (ins i64i8imm:$stream),
          "stream.terminate\t{$stream|$stream}",
-         [(int_stream_terminate GR64:$stream)]>;
+         [(int_stream_terminate i64immSExt8:$stream)]>;
