@@ -1639,6 +1639,16 @@ def int_stream_terminate          : Intrinsic<[],
                                       [llvm_i64_ty],
                                       [IntrWillReturn]>;
 
+// Configure stream ready
+def int_stream_cfg_ready          : Intrinsic<[],
+                                      [llvm_i64_ty],
+                                      [IntrWillReturn]>;
+
+// Input stream ready
+def int_stream_input_ready          : Intrinsic<[],
+                                      [llvm_i64_ty],
+                                      [IntrWillReturn]>;
+
 //===----------------------------------------------------------------------===//
 // Target-specific intrinsics
 //===----------------------------------------------------------------------===//
