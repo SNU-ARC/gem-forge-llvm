@@ -73,3 +73,21 @@ def STREAM_TERMINATE
          (ins i64i8imm:$stream),
          "stream.terminate\t{$stream|$stream}",
          [(int_stream_terminate i64immSExt8:$stream)]>;
+
+def STREAM_CFG_READY
+  : IPSP<0x67, 
+         RawFrm, 
+         Imm8,
+         (outs),
+         (ins i64i8imm:$stream),
+         "stream.cfg.ready\t{$stream|$stream}",
+         [(int_stream_cfg_ready i64immSExt8:$stream)]>;
+
+def STREAM_INPUT_READY
+  : IPSP<0x68, 
+         RawFrm, 
+         Imm8,
+         (outs),
+         (ins i64i8imm:$stream),
+         "stream.input.ready\t{$stream|$stream}",
+         [(int_stream_input_ready i64immSExt8:$stream)]>;
